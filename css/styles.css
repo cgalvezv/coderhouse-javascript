@@ -1,0 +1,23 @@
+body {
+    background-color:#E8F1F2;
+}
+
+.navbar {
+    background-color: #13293d;
+}
+
+.main-parragraph {
+    color: #E8F1F2;
+    background-color:#247BA0;
+    padding-top: 20px;
+    margin: 20px 0;
+}
+
+.main-form {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+#info-text-result {
+    margin: 40% auto;
+}
