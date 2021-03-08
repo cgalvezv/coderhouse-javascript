@@ -1,7 +1,7 @@
 
-const valorUF = 29110 // valor de la UF para el día 26/01/2021
-const simulacion = new Simulacion(0, valorUF, 0);
+const simulacion = new Simulacion(0, 0, 0);
 const cliente = new Cliente('', '', '');
+
 
 const cambiarValorCliente = (attr) => {
     const valor = document.getElementById(attr).value;
@@ -10,6 +10,8 @@ const cambiarValorCliente = (attr) => {
 }
 
 const cambiarValorSimulacion = (attr) => {
+    const valorDiaUF = Number($('#ind-uf').text().split(':')[1]); // Actualizo valor dia UF
+    simulacion.valorDiaUF = valorDiaUF;
     const valor = document.getElementById(attr).value;
     simulacion[attr] = typeof valor === 'string' ? Number(valor) : valor;
     if (attr == 'montoCLP') {
@@ -171,6 +173,30 @@ const obtenerSimulacionTasaInfoEnTabla = (montoCLP, pie) => {
     })
 }
 
+const obtenerIndicadoresEconomicos = () => {
+    $.ajax({
+        url: 'https://mindicador.cl/api',
+        dataType: 'json',
+        success: (indicators) => {
+            const {uf, euro, dolar, dolar_intercambio, utm, bitcoin, ivp} = indicators;
+            generarHTMLIndicadorEconomico(dolar);
+            generarHTMLIndicadorEconomico(dolar_intercambio);
+            generarHTMLIndicadorEconomico(euro);
+            generarHTMLIndicadorEconomico(uf);
+            generarHTMLIndicadorEconomico(utm);
+            generarHTMLIndicadorEconomico(ivp);
+            generarHTMLIndicadorEconomico(bitcoin);
+        }
+    })
+}
+
+const generarHTMLIndicadorEconomico = (indicador) => {
+    $("#daily-indicators").append(`
+        <li id="ind-${indicador.codigo}" class="list-group-item">${indicador.nombre}: ${formatearCLP(parseInt(indicador.valor))}</li>
+    `)
+}
+
+
 /**
  * Genera HTML del contenido principal de la tabla informativa resultante de la simulación
  */
@@ -202,5 +228,6 @@ $(document).ready(() => {
     $("#apellido").val(localStorage.getItem("apellido") || ""); cambiarValorCliente("apellido");
     $("#email").val(localStorage.getItem("email") || ""); cambiarValorCliente("email");
     // Lógica para enviar simulacion con enter
+    obtenerIndicadoresEconomicos();
     $(document).keypress((event) => enviarSimulaciónManual(event));
 });
