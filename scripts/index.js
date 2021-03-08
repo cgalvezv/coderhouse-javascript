@@ -192,7 +192,9 @@ const obtenerIndicadoresEconomicos = () => {
 
 const generarHTMLIndicadorEconomico = (indicador) => {
     $("#daily-indicators").append(`
-        <li id="ind-${indicador.codigo}" class="list-group-item">${indicador.nombre}: ${formatearCLP(parseInt(indicador.valor))}</li>
+        <li id="ind-${indicador.codigo}" class="list-group-item">
+            ${indicador.nombre} ${indicador.unidad_medida === 'Dólar' ? '(USD)' : ''}  ${formatearCLP(parseInt(indicador.valor))}
+        </li>
     `)
 }
 
