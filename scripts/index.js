@@ -222,7 +222,7 @@ const generarCaracteristicasCredito = () => {
  */
 const generarHTMLCaracteristicasCredito = () => `
         <br>
-        <h5 class="h5">Caracteristicas del crédito</h5>
+        <h5 class="h5">Características del crédito</h5>
         <ul id="lista-caracteristicas" class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 MESES DE GRACIA
