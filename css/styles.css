@@ -1,14 +1,20 @@
-main > .container {
-    padding: 60px 15px 0;
+html, body {
+    height:100%;
+    overflow:hidden;
 }
 
-  
 body {
     background-color:#E8F1F2;
 }
 
 .navbar {
     background-color: #13293d;
+}
+
+main {
+    overflow-y:scroll;
+    height: 90%;
+    padding: 30px 0 120px 0;
 }
 
 .main-parragraph {
