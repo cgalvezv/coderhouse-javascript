@@ -31,10 +31,12 @@ class Simulacion {
      * @param {number} montoSolicitadoCLP es el monto solicitado en CLP (Pesos chilenos)
      * @param {number} valorDiaUF es el valor a tiempo real de la UF
      */
-    constructor(montoSolicitadoCLP, valorDiaUF, pie) {
+    constructor(montoSolicitadoCLP, valorDiaUF, pie, mesesGracia, caracteristicasCredito) {
         this.valorDiaUF = valorDiaUF;
         this.montoCLP = montoSolicitadoCLP;
         this.pie = pie;
+        this.mesesGracia = mesesGracia;
+        this.caracteristicasCredito = caracteristicasCredito;
     }
 
     generarMontoUF() {
@@ -61,8 +63,15 @@ class Simulacion {
      * Chequea si las propiedades de la simulacion son validas
      */
     esValida() {
-        return (this.montoCLP > 0 && this.montoCLP !== null && this.montoCLP !== undefined) &&
+        const largoObjCaracteristicas = lenObjeto(this.caracteristicasCredito);
+        const esCaracteristicaValida = (largoObjCaracteristicas === 2) || (largoObjCaracteristicas === 1 && 
+            this.caracteristicasCredito.tipo_credito && this.caracteristicasCredito.tipo_credito === 'consumo');
+        return esCaracteristicaValida && (this.montoCLP > 0 && this.montoCLP !== null && this.montoCLP !== undefined) &&
             (this.valorDiaUF > 0 && this.valorDiaUF !== null && this.valorDiaUF !== undefined) &&
             (this.pie > 0 && this.pie !== null && this.pie !== undefined)
     }
+
+    agregarCaracterisitica(llave, valor) {
+        this.caracteristicasCredito[llave] = valor;
+    } 
 }

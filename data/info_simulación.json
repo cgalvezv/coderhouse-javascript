@@ -4,8 +4,16 @@
         "tasa": 2.32
     },
     {
+        "cuotas":96,
+        "tasa": 2.33
+    },
+    {
         "cuotas":120,
         "tasa": 2.48
+    },
+    {
+        "cuotas":144,
+        "tasa": 2.49
     },
     {
         "cuotas":180,
