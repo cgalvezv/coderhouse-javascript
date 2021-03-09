@@ -145,6 +145,9 @@ const editarSimulacionPantalla = (infoPie, valorPie, clean) => {
             $("#nombre").val("");
             $("#apellido").val("");
             $("#email").val("");
+            $("#tipoCredito").val("");
+            $("#mesesGracia").val("");
+            $("#estadoVivienda").val("");
             $("#montoCLP").val("");
             $("#infoPie").html("");
             $("#porcentajePie").html("<b>0%</b>");
